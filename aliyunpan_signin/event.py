@@ -73,18 +73,19 @@ def xy_rediy(state='自动'):
             time.sleep(180)
     else:
         logging.warning(f"「小雅{state}重启与美化」未设置 Portainer 参数，跳过重启")
-    if xy_diy:
+    if xy_diy and restart_conf:
         rusult2 = xiaoya_diy(db_path,new_head_value,new_body_value,new_readme,new_pk_readme)
         logging.info(f"「小雅{state}美化」{rusult2}")
         rusult = restart_docker(portainer_url, portainer_access_token, env,xy_name)
         logging.info(f"「小雅{state}重启」第 2/2 次重启：{rusult}")
     else:
-        logging.warning(f"「小雅{state}重启与美化」未开启小雅美化，跳过")
+        logging.warning(f"「小雅{state}重启与美化」未开启小雅美化或重启设置，跳过")
     logging.info(f"「小雅{state}重启与美化」运行完成")
 
 
 @plugin.task('xiaoya_diy_task', '小雅自动重启与美化', cron_expression='*/5 0-2,7-23 * * *')
 def xiaoya_diy_task():
+    if not restart_conf: return
     running_version = server.common.get_cache('xiaoya_data_version', 'running_version') or '未知'
     new_version = get_xiaoya_data_version()
     if new_version:
