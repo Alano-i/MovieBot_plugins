@@ -1,8 +1,8 @@
 {
   "name": "aliyunpan_signin",
-  "title": "阿里云盘签到",
+  "title": "阿里云盘工具箱",
   "author": "NaNaKo_",
-  "description": "阿里云盘签到。",
+  "description": "阿里云盘签到，小雅重启、美化、清理小雅转存文件夹",
   "version": "0.5",
   "requirements": [],
   "configField": [
@@ -56,6 +56,13 @@
       "label": "小雅配置",
       "helperText": "格式为refreshToken:folder_id。不支持多个。",
       "defaultValue": ""
+    },
+    {
+      "fieldName": "restart_conf",
+      "fieldType": "Bool",
+      "label": "开启自动重启小雅以更新媒体资源（需要配置下方 Portainer 参数）",
+      "helperText": "",
+      "defaultValue": false
     },
     {
       "fieldName": "portainer_url",
@@ -117,6 +124,13 @@
       "fieldName": "new_readme",
       "fieldType": "String",
       "label": "小雅首页 ReadME 介绍",
+      "helperText": "",
+      "defaultValue": ""
+    },
+    {
+      "fieldName": "new_pk_readme",
+      "fieldType": "String",
+      "label": "Pikpak 目录说明",
       "helperText": "",
       "defaultValue": ""
     }
